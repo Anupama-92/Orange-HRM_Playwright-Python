@@ -13,7 +13,6 @@ class AdminPage:
 
     def navigate_to_admin_page(self):
         self.admin_menu.click()
-        self.page.pause()
 
     def select_job_details(self):
         self.job_menu.click()
