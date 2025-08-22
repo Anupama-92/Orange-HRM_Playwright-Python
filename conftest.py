@@ -1,6 +1,7 @@
 import pytest
 from playwright.sync_api import sync_playwright
 from datetime import datetime
+import os
 
 
 @pytest.fixture(scope="session")
@@ -13,22 +14,36 @@ def browser():
 
 
 @pytest.fixture(scope="function")
-def page(browser):
+def context(browser, request):
+    # Create a new browser context
     context = browser.new_context()
-    page = context.new_page()
-    yield page
+
+    # Start tracing
+    context.tracing.start(screenshots=True, snapshots=True, sources=True)
+
+    yield context
+
+    # If test failed, save the trace
+    if request.node.rep_call.failed:
+        os.makedirs("traces", exist_ok=True)
+        trace_path = f"traces/{request.node.name}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.zip"
+        context.tracing.stop(path=trace_path)
+        print(f"\n Trace saved: {trace_path}")
+    else:
+        context.tracing.stop()
+
     context.close()
 
 
+@pytest.fixture(scope="function")
+def page(context):
+    page = context.new_page()
+    yield page
+
+
+# Hook to know test outcome (so we know if failed inside fixture)
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     outcome = yield
-    report = outcome.get_result()
-
-    if report.when == "call" and report.failed:
-        page = item.funcargs.get("page", None)
-        if page:
-            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-            screenshot_path = f"screenshots/{item.name}_{timestamp}.png"
-            page.screenshot(path=screenshot_path)
-            print(f"\n Screenshot saved: {screenshot_path}")
+    rep = outcome.get_result()
+    setattr(item, "rep_" + rep.when, rep)
