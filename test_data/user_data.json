@@ -1,0 +1,18 @@
+[
+  {
+    "employee_name": "Orange  Test",
+    "username": "TestUser1",
+    "password": "Admin123",
+    "confirm_password": "Admin123",
+    "role": "Admin",
+    "status": "Enabled"
+  },
+  {
+    "employee_name": "test  skill",
+    "username": "TestUser2",
+    "password": "Admin123",
+    "confirm_password": "Admin123",
+    "role": "ESS",
+    "status": "Disabled"
+  }
+]
