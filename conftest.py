@@ -3,6 +3,8 @@ from playwright.sync_api import sync_playwright
 from datetime import datetime
 import os
 
+STORAGE_FILE = "storage_state.json"
+
 
 @pytest.fixture(scope="session")
 def browser():
@@ -15,13 +17,21 @@ def browser():
 
 @pytest.fixture(scope="function")
 def context(browser, request):
-    # Create a new browser context
-    context = browser.new_context()
+    # Reuse saved storage state if available
+    if os.path.exists(STORAGE_FILE):
+        context = browser.new_context(storage_state=STORAGE_FILE)
+    else:
+        context = browser.new_context()
 
     # Start tracing
     context.tracing.start(screenshots=True, snapshots=True, sources=True)
 
     yield context
+
+    # Save storage state after login test (first time)
+    if "login" in request.node.name.lower() and not os.path.exists(STORAGE_FILE):
+        context.storage_state(path=STORAGE_FILE)
+        print(f"\n Storage state saved to {STORAGE_FILE}")
 
     # If test failed, save the trace
     if request.node.rep_call.failed:
