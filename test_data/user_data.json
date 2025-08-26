@@ -13,6 +13,6 @@
     "password": "Admin123",
     "confirm_password": "Admin123",
     "role": "ESS",
-    "status": "Disabled"
+    "status": "Enabled"
   }
 ]

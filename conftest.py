@@ -6,10 +6,11 @@ import os
 STORAGE_FILE = "storage_state.json"
 
 
-@pytest.fixture(scope="session")
-def browser():
+@pytest.fixture(scope="session", params=["chromium", "firefox"])
+def browser(request):
     playwright = sync_playwright().start()
-    browser = playwright.chromium.launch(headless=False, slow_mo=500)  # fixed to chromium
+    browser_type = getattr(playwright, request.param)   # dynamically pick browser type
+    browser = browser_type.launch(headless=False, slow_mo=500)
     yield browser
     browser.close()
     playwright.stop()

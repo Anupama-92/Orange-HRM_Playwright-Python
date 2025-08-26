@@ -1,0 +1,43 @@
+# Trigger pipeline on every push to main branch
+trigger:
+  branches:
+    include:
+      - main    # change if your default branch is 'master' or something else
+
+# Use the latest Ubuntu VM
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  # Step 1: Checkout code from GitHub
+  - task: Checkout@1
+
+  # Step 2: Install Node.js
+  - task: UseNode@1
+    inputs:
+      version: '18.x'
+
+  # Step 3: Install dependencies & Playwright browsers
+  - script: |
+      npm ci
+      npx playwright install --with-deps
+    displayName: 'Install dependencies and Playwright browsers'
+
+  # Step 4: Run Playwright tests
+  - script: |
+      npx playwright test --reporter=html --reporter=junit
+    displayName: 'Run Playwright tests'
+
+  # Step 5: Publish test results in Azure DevOps (JUnit XML)
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFiles: '**/test-results.xml'
+      testRunTitle: 'Playwright Test Results'
+    condition: succeededOrFailed()
+
+  # Step 6: Publish Playwright HTML report as artifact
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: 'playwright-report'
+      artifact: 'playwright-report'
+      publishLocation: 'pipeline'
