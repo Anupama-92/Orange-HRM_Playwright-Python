@@ -10,7 +10,6 @@ resources:
       	endpoint: GitHub-ServiceConnection  # Name of the service connection
 
 pool:
-#  vmImage: 'windows-latest'   # Microsoft-hosted agent
    name: PlaywrightPythonAgent
 
 steps:
