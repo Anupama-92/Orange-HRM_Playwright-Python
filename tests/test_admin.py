@@ -21,23 +21,32 @@ def test_employment_status(page):
     # Fetch all statuses
     ui_statuses = admin_page.get_all_employment_status()
 
-    # Compare API response with UI list
-    assert new_status in ui_statuses, f"API status '{new_status}' not found in UI statuses {ui_statuses}"
-
     # Save into config.py
     config_path = "config/config.py"
+    # Read the current config file
     with open(config_path, "r") as file:
         content = file.read()
 
+    print("Original config content:")
+    print(content)
+
+    # Build new list string from actual list (e.g. ['Full-Time', 'Part-Time'])
+    ui_status_str = repr(ui_statuses)
+
     new_content = re.sub(
-        r"EMPLOYMENT_STATUS_LIST\s*=\s*\[.*?\]",
-        f"EMPLOYMENT_STATUS_LIST = {ui_statuses}",
+        r"(EMPLOYMENT_STATUS_LIST\s*=\s*)\[[^\]]*\]",
+        f"\\1{ui_status_str}",
         content,
         flags=re.DOTALL
     )
 
     with open(config_path, "w") as file:
         file.write(new_content)
+    print(new_content)
+
+    # Compare API response with UI list
+    assert new_status in ui_statuses, f"API status '{new_status}' not found in UI statuses {ui_statuses}"
+
 
 
 
