@@ -2,7 +2,7 @@ trigger:
 - main   # or your default branch
 
 pool:
-  vmImage: 'ubuntu-latest'   # Microsoft-hosted agent
+  vmImage: 'windows-latest'   # Microsoft-hosted agent
 
 steps:
   # Step 1: Install Python
