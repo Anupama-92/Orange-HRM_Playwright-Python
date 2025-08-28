@@ -1,18 +1,18 @@
 [
   {
-    "employee_name": "test_first test_middle test_last",
-    "username": "TestUser1",
+    "employee_name": "Swathi  Priya",
+    "username": "TestUser3",
     "password": "Admin123",
     "confirm_password": "Admin123",
     "role": "Admin",
     "status": "Enabled"
   },
   {
-    "employee_name": "Jane Test Doe",
-    "username": "TestUser2",
+    "employee_name": "Jori Abdulrahmman Alshoshan",
+    "username": "TestUser4",
     "password": "Admin123",
     "confirm_password": "Admin123",
-    "role": "ESS",
+    "role": "Admin",
     "status": "Enabled"
   }
 ]
