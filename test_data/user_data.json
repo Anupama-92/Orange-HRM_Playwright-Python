@@ -1,15 +1,7 @@
 [
   {
     "employee_name": "Swathi  Priya",
-    "username": "TestUser3",
-    "password": "Admin123",
-    "confirm_password": "Admin123",
-    "role": "Admin",
-    "status": "Enabled"
-  },
-  {
-    "employee_name": "Jori Abdulrahmman Alshoshan",
-    "username": "TestUser4",
+    "username": "TestUser5",
     "password": "Admin123",
     "confirm_password": "Admin123",
     "role": "Admin",
