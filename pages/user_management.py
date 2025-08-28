@@ -17,9 +17,8 @@ class UserManagementPage:
         self.confirm_password = page.locator("//label[text()='Confirm Password']/../following-sibling::div//input")
         self.save_button = page.get_by_role("button", name="Save")
 
-
     def navigate_to_user_management_page(self):
-        self.page.pause()
+        # self.page.pause()
         self.user_management_menu.click()
 
     def select_user_menu(self):
