@@ -1,43 +1,35 @@
-# Trigger pipeline on every push to main branch
 trigger:
-  branches:
-    include:
-      - main    # change if your default branch is 'master' or something else
+- main   # or your default branch
 
-# Use the latest Ubuntu VM
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-latest'   # Microsoft-hosted agent
 
 steps:
-  # Step 1: Checkout code from GitHub
-  - task: Checkout@1
-
-  # Step 2: Install Node.js
-  - task: UseNode@1
+  # Step 1: Install Python
+  - task: UsePythonVersion@0
     inputs:
-      version: '18.x'
+      versionSpec: '3.10'   # or 3.11 if your project supports
+    displayName: 'Use Python 3.x'
 
-  # Step 3: Install dependencies & Playwright browsers
+  # Step 2: Install dependencies
   - script: |
-      npm ci
-      npx playwright install --with-deps
-    displayName: 'Install dependencies and Playwright browsers'
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+    displayName: 'Install dependencies'
 
-  # Step 4: Run Playwright tests
+  # Step 3: Install Playwright browsers
   - script: |
-      npx playwright test --reporter=html --reporter=junit
-    displayName: 'Run Playwright tests'
+      python -m playwright install --with-deps
+    displayName: 'Install Playwright Browsers'
 
-  # Step 5: Publish test results in Azure DevOps (JUnit XML)
+  # Step 4: Run pytest with Playwright
+  - script: |
+      pytest --maxfail=1 --disable-warnings -q --junitxml=test-results/results.xml
+    displayName: 'Run Pytest Playwright Tests'
+
+  # Step 5: Publish test results in Azure DevOps
   - task: PublishTestResults@2
     inputs:
-      testResultsFiles: '**/test-results.xml'
-      testRunTitle: 'Playwright Test Results'
+      testResultsFiles: '**/test-results/results.xml'
+      testRunTitle: 'Playwright Python Test Results'
     condition: succeededOrFailed()
-
-  # Step 6: Publish Playwright HTML report as artifact
-  - task: PublishPipelineArtifact@1
-    inputs:
-      targetPath: 'playwright-report'
-      artifact: 'playwright-report'
-      publishLocation: 'pipeline'
