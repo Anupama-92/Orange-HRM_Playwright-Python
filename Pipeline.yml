@@ -1,37 +1,38 @@
 trigger:
-- main   # or your default branch
+- main
 
-resources:
-  	repositories:
-      - repository: Orange-HRM_Playwright-Python
-        type: github
-        name: Anupama-92/Orange-HRM_Playwright-Python
-        endpoint: Anupama-92  # Name of the service connection
-
+# Use your self-hosted agent pool
 pool:
-   name: PlaywrightPythonAgent
+  name: 'PlaywrightPythonAgent'   # <-- replace with your actual pool name
 
 steps:
+  # (Optional) Verify Python version available in your self-hosted agent
+  - script: |
+      python --version
+      pip --version
+    displayName: 'Check Python environment'
 
-  # Step 1: Install dependencies
   - script: |
       python -m pip install --upgrade pip
       pip install -r requirements.txt
     displayName: 'Install dependencies'
 
-  # Step 2: Install Playwright browsers
   - script: |
-      python -m playwright install --with-deps
-    displayName: 'Install Playwright Browsers'
+      pytest --alluredir=reports/allure-results
+    displayName: 'Run tests with Allure reporting'
 
-  # Step 3: Run pytest with Playwright
+  # Install Allure CLI (if not pre-installed in agent)
   - script: |
-      pytest --maxfail=1 --disable-warnings -q --junitxml=test-results/results.xml
-    displayName: 'Run Pytest Playwright Tests'
+      npm install -g allure-commandline --save-dev
+    displayName: 'Install Allure CLI'
 
-  # Step 4: Publish test results in Azure DevOps
-  - task: PublishTestResults@2
+  - script: |
+      allure generate reports/allure-results -o reports/allure-report --clean
+    displayName: 'Generate Allure HTML Report'
+
+  - task: PublishBuildArtifacts@1
     inputs:
-      testResultsFiles: '**/test-results/results.xml'
-      testRunTitle: 'Playwright Python Test Results'
-    condition: succeededOrFailed()
+      pathToPublish: 'reports/allure-report'
+      artifactName: 'allure-report'
+      publishLocation: 'Container'
+    displayName: 'Publish Allure Report Artifact'
