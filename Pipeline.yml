@@ -3,11 +3,10 @@ trigger:
 
 resources:
   	repositories:
-  	  - repository: myGitHubRepo
-   	   type: github
-   	   name: yourGitHubUserOrOrg/your-repo-name
-
-      	endpoint: GitHub-ServiceConnection  # Name of the service connection
+      - repository: Orange-HRM_Playwright-Python
+        type: github
+        name: Anupama-92/Orange-HRM_Playwright-Python
+        endpoint: Anupama-92  # Name of the service connection
 
 pool:
    name: PlaywrightPythonAgent
