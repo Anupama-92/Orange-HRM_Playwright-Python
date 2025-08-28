@@ -1,33 +1,37 @@
 trigger:
 - main   # or your default branch
 
+resources:
+  	repositories:
+  	  - repository: myGitHubRepo
+   	   type: github
+   	   name: yourGitHubUserOrOrg/your-repo-name
+
+      	endpoint: GitHub-ServiceConnection  # Name of the service connection
+
 pool:
-  vmImage: 'windows-latest'   # Microsoft-hosted agent
+#  vmImage: 'windows-latest'   # Microsoft-hosted agent
+   name: PlaywrightPythonAgent
 
 steps:
-  # Step 1: Install Python
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: '3.10'   # or 3.11 if your project supports
-    displayName: 'Use Python 3.x'
 
-  # Step 2: Install dependencies
+  # Step 1: Install dependencies
   - script: |
       python -m pip install --upgrade pip
       pip install -r requirements.txt
     displayName: 'Install dependencies'
 
-  # Step 3: Install Playwright browsers
+  # Step 2: Install Playwright browsers
   - script: |
       python -m playwright install --with-deps
     displayName: 'Install Playwright Browsers'
 
-  # Step 4: Run pytest with Playwright
+  # Step 3: Run pytest with Playwright
   - script: |
       pytest --maxfail=1 --disable-warnings -q --junitxml=test-results/results.xml
     displayName: 'Run Pytest Playwright Tests'
 
-  # Step 5: Publish test results in Azure DevOps
+  # Step 4: Publish test results in Azure DevOps
   - task: PublishTestResults@2
     inputs:
       testResultsFiles: '**/test-results/results.xml'
