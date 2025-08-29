@@ -28,20 +28,24 @@ def context(browser, request):
     context.tracing.start(screenshots=True, snapshots=True, sources=True)
 
     yield context
+    rep_call = getattr(request.node, "rep_call", None)
 
-    # Save storage state after login test (first time)
-    if "login" in request.node.name.lower() and not os.path.exists(STORAGE_FILE):
-        context.storage_state(path=STORAGE_FILE)
-        print(f"\n Storage state saved to {STORAGE_FILE}")
+    try:
+        # Save storage state after successful login test
+        if getattr(request.node, "save_storage", False):
+            context.storage_state(path=STORAGE_FILE)
+            print(f"\n Storage state saved to {STORAGE_FILE}")
 
-    # If test failed, save the trace
-    if request.node.rep_call.failed:
-        os.makedirs("traces", exist_ok=True)
-        trace_path = f"traces/{request.node.name}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.zip"
-        context.tracing.stop(path=trace_path)
-        print(f"\n Trace saved: {trace_path}")
-    else:
-        context.tracing.stop()
+        # Save trace only if test failed
+        if rep_call and rep_call.failed:
+            os.makedirs("traces", exist_ok=True)
+            trace_path = f"traces/{request.node.name}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.zip"
+            context.tracing.stop(path=trace_path)
+            print(f"\n Trace saved: {trace_path}")
+        else:
+            context.tracing.stop()
+    except Exception as e:
+        print(f"\n[Warning] Error while stopping trace: {e}")
 
     context.close()
 

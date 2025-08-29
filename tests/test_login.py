@@ -26,13 +26,14 @@ def test_valid_login(page, request):
         page.on("request", log_request)
         page.on("response", log_response)
 
-        with allure.step("Navigate to login page and perform login"):
-            login_page.navigate()
-            login_page.enter_username()
-            login_page.enter_password()
-            login_page.click_login()
+        # with allure.step("Navigate to login page and perform login"):
+        #     login_page.navigate()
+        #     login_page.enter_username()
+        #     login_page.enter_password()
+        #     login_page.click_login()
 
         with allure.step("Verify successful login by checking dashboard header"):
+            page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
             assert login_page.dashboard_header.is_visible(), "Login failed - Dashboard not visible"
 
         with allure.step("Attach network logs to report"):

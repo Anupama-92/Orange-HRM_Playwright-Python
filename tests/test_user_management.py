@@ -4,6 +4,9 @@ import allure
 from pages.admin_page import AdminPage
 from pages.login_page import LoginPage
 from pages.user_management import UserManagementPage
+from utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 
 def load_test_data():
@@ -16,22 +19,25 @@ def load_test_data():
 @allure.story("Add User")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_user_management(page, user):
-    with allure.step("Login to the application"):
-        login_page = LoginPage(page)
-        login_page.navigate()
-        login_page.enter_username()
-        login_page.enter_password()
-        login_page.click_login()
-
-    with allure.step("Navigate to Admin Page"):
+    # with allure.step("Login to the application"):
+    #     login_page = LoginPage(page)
+    #     login_page.navigate()
+    #     login_page.enter_username()
+    #     login_page.enter_password()
+    #     login_page.click_login()
+    #
+    with allure.step("Open dashboard using restored session"):
+        page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
         admin_page = AdminPage(page)
         admin_page.navigate_to_admin_page()
+        logger.info("Navigated to Admin Page")
 
     with allure.step("Open User Management section"):
         user_management_page = UserManagementPage(page)
         user_management_page.navigate_to_user_management_page()
         user_management_page.select_user_menu()
         user_management_page.click_add_user()
+        logger.info(f"Adding new user: {user['username']}")
 
     with allure.step("Fill in user details and save"):
         user_management_page.click_user_role_dropdown()
@@ -42,6 +48,7 @@ def test_user_management(page, user):
         user_management_page.password.fill(user["password"])
         user_management_page.confirm_password.fill(user["confirm_password"])
         user_management_page.click_save_button()
+        logger.info("User saved successfully")
 
     # Capture screenshot and attach to Allure report
     allure.attach(

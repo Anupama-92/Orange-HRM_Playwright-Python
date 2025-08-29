@@ -1,6 +1,7 @@
 import re
 import allure
 import pytest
+
 from config.config import Configs
 from pages.admin_page import AdminPage
 from pages.login_page import LoginPage
@@ -13,7 +14,7 @@ from utils.employment_status_api_utils import EmploymentStatusAPI
 @allure.description("This test validates that employment statuses added via API are reflected correctly in the Admin UI.")
 @allure.severity(allure.severity_level.CRITICAL)
 @pytest.mark.admin
-def test_employment_status(page):
+def test_employment_status(page, request):
     with allure.step("Add new employment status via API"):
         new_status = EmploymentStatusAPI.add_employment_status()
 
@@ -23,6 +24,8 @@ def test_employment_status(page):
         login_page.enter_username()
         login_page.enter_password()
         login_page.click_login()
+        # Mark this test to save storage state for reuse
+        setattr(request.node, "save_storage", True)
 
     with allure.step("Navigate to Admin -> Job -> Employment Status"):
         admin_page = AdminPage(page)
