@@ -1,7 +1,7 @@
 [
   {
     "employee_name": "Automation Test User2",
-    "username": "TestUser35",
+    "username": "TestUser37",
     "password": "Admin123",
     "confirm_password": "Admin123",
     "role": "Admin",
@@ -9,7 +9,7 @@
   },
   {
   "employee_name": "Automation Test User3",
-  "username": "TestUser36",
+  "username": "TestUser38",
   "password": "Admin123",
   "confirm_password": "Admin123",
   "role": "Admin",

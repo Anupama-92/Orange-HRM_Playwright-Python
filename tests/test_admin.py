@@ -8,6 +8,7 @@ from utils.employment_status_api_utils import EmploymentStatusAPI
 
 
 @allure.title("Validate Employment Status from API and UI")
+@allure.feature("Employment Status")
 @allure.description("This test validates that employment statuses added via API are reflected correctly in the Admin UI.")
 @allure.severity(allure.severity_level.CRITICAL)
 @pytest.mark.admin
