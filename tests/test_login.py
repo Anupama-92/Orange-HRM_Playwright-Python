@@ -6,6 +6,7 @@ from pages.login_page import LoginPage
 
 @allure.title("Valid Login Test")
 @allure.feature("Login Functionality")
+@allure.story("Login Functionality")
 @allure.description("This test validates that a valid user can log into OrangeHRM successfully.")
 @allure.severity(allure.severity_level.BLOCKER)
 @pytest.mark.login
