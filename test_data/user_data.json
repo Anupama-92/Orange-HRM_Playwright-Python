@@ -1,15 +1,15 @@
 [
   {
-    "employee_name": "Rahul  Das",
-    "username": "TestUser9",
+    "employee_name": "Automation Test User",
+    "username": "TestUser11",
     "password": "Admin123",
     "confirm_password": "Admin123",
     "role": "Admin",
     "status": "Enabled"
   },
   {
-  "employee_name": "Ranga  Akunuri",
-  "username": "TestUser10",
+  "employee_name": "Automation Test User1",
+  "username": "TestUser12",
   "password": "Admin123",
   "confirm_password": "Admin123",
   "role": "Admin",
