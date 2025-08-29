@@ -8,11 +8,10 @@
  Request: GET https://opensource-demo.orangehrmlive.com/web/dist/js/app.js?v=1721393199309
  Response: 200 https://opensource-demo.orangehrmlive.com/web/dist/css/chunk-vendors.css?v=1721393199309
  Response: 200 https://opensource-demo.orangehrmlive.com/web/dist/css/app.css?v=1721393199309
- Response: 200 https://opensource-demo.orangehrmlive.com/web/dist/js/chunk-vendors.js?v=1721393199309
  Response: 200 https://opensource-demo.orangehrmlive.com/web/dist/js/app.js?v=1721393199309
+ Response: 200 https://opensource-demo.orangehrmlive.com/web/dist/js/chunk-vendors.js?v=1721393199309
  Request: GET https://opensource-demo.orangehrmlive.com/web/index.php/core/i18n/messages
  Request: GET https://opensource-demo.orangehrmlive.com/web/dist/favicon.ico?v=1721393199309
- Response: 200 https://opensource-demo.orangehrmlive.com/web/dist/favicon.ico?v=1721393199309
  Response: 200 https://opensource-demo.orangehrmlive.com/web/index.php/core/i18n/messages
  Request: GET https://opensource-demo.orangehrmlive.com/web/images/ohrm_branding.png?v=1721393199309
  Request: GET https://opensource-demo.orangehrmlive.com/web/images/ohrm_logo.png
@@ -21,14 +20,15 @@
  Request: GET https://opensource-demo.orangehrmlive.com/web/dist/fonts/nunito-sans-v6-latin-ext_latin-regular.woff2
  Request: GET https://opensource-demo.orangehrmlive.com/web/dist/fonts/bootstrap-icons.woff2
  Request: GET https://opensource-demo.orangehrmlive.com/web/dist/fonts/nunito-sans-v6-latin-ext_latin-600.woff2
- Response: 200 https://opensource-demo.orangehrmlive.com/web/images/ohrm_logo.png
  Response: 200 https://opensource-demo.orangehrmlive.com/web/images/ohrm_branding.png?v=1721393199309
  Response: 200 https://opensource-demo.orangehrmlive.com/web/dist/img/blob.svg
- Response: 200 https://opensource-demo.orangehrmlive.com/web/dist/fonts/nunito-sans-v6-latin-ext_latin-regular.woff2
+ Response: 200 https://opensource-demo.orangehrmlive.com/web/images/ohrm_logo.png
  Response: 200 https://opensource-demo.orangehrmlive.com/web/dist/fonts/nunito-sans-v6-latin-ext_latin-800.woff2
+ Response: 200 https://opensource-demo.orangehrmlive.com/web/dist/fonts/nunito-sans-v6-latin-ext_latin-regular.woff2
  Response: 200 https://opensource-demo.orangehrmlive.com/web/dist/fonts/nunito-sans-v6-latin-ext_latin-600.woff2
- Response: 200 https://opensource-demo.orangehrmlive.com/web/dist/fonts/bootstrap-icons.woff2
  Request: POST https://opensource-demo.orangehrmlive.com/web/index.php/auth/validate
+ Response: 200 https://opensource-demo.orangehrmlive.com/web/dist/favicon.ico?v=1721393199309
+ Response: 200 https://opensource-demo.orangehrmlive.com/web/dist/fonts/bootstrap-icons.woff2
  Response: 302 https://opensource-demo.orangehrmlive.com/web/index.php/auth/validate
  Request: GET https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index
  Response: 200 https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index
@@ -56,14 +56,14 @@
  Request: GET https://opensource-demo.orangehrmlive.com/web/dist/fonts/nunito-sans-v6-latin-ext_latin-700.woff2
  Request: GET https://opensource-demo.orangehrmlive.com/web/dist/fonts/nunito-sans-v6-latin-ext_latin-300.woff2
  Request: GET https://opensource-demo.orangehrmlive.com/web/dist/fonts/nunito-sans-v6-latin-ext_latin-italic.woff2
- Request: GET https://opensource-demo.orangehrmlive.com/web/index.php/admin/theme/image/clientBanner?v=1721393199309
+ Request: GET https://opensource-demo.orangehrmlive.com/web/images/orangehrm-logo.png?v=1721393199309
  Request: GET https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewPhoto/empNumber/7
  Request: GET https://opensource-demo.orangehrmlive.com/web/images/dashboard_empty_widget_watermark.png
- Request: GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/employees/time-at-work?timezoneOffset=5.5&currentDate=2025-08-26&currentTime=17:05
+ Request: GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/employees/time-at-work?timezoneOffset=5.5&currentDate=2025-08-29&currentTime=12:21
  Request: GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/employees/action-summary
  Request: GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/shortcuts
  Request: GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/buzz/feed?limit=5&offset=0&sortOrder=DESC&sortField=share.createdAtUtc
- Request: GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/employees/leaves?date=2025-08-26
+ Request: GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/employees/leaves?date=2025-08-29
  Request: GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/employees/subunit
  Request: GET https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/dashboard/employees/locations
  Request: POST https://opensource-demo.orangehrmlive.com/web/index.php/events/push

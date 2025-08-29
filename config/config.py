@@ -17,4 +17,4 @@ class Configs:
         "Content-Type": "application/json"
     }
     NEW_EMPLOYMENT_STATUS = {"name": "AutomationTest"}
-    EMPLOYMENT_STATUS_LIST = ['Full-Time Contract', 'Full-Time Permanent', 'Full-Time Probation', 'Part-Time Contract', 'Part-Time Internship', 'TestAuto2', 'TestAuto3', 'TestAuto4']
+    EMPLOYMENT_STATUS_LIST = ['Freelance', 'Full-Time Contract', 'Full-Time Permanent', 'Full-Time Probation', 'Part-Time Contract', 'Part-Time Internship', 'TestAuto16', 'TestAuto17', 'TestAuto18', 'TestAuto19']
