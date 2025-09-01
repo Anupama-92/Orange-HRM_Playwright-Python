@@ -13,7 +13,7 @@ class EmploymentStatusAPI:
         return [status["name"] for status in response.json().get("data", [])]
 
     @classmethod
-    def add_employment_status(cls, name="TestAuto51"):
+    def add_employment_status(cls, name="TestAuto52"):
         """Add a new employment status"""
         payload = {"name": name}
 
