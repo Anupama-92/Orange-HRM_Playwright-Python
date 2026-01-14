@@ -18,14 +18,17 @@ def test_employment_status(page, request):
     with allure.step("Add new employment status via API"):
         new_status = EmploymentStatusAPI.add_employment_status()
 
-    with allure.step("Login into OrangeHRM as Admin"):
-        login_page = LoginPage(page)
-        login_page.navigate()
-        login_page.enter_username()
-        login_page.enter_password()
-        login_page.click_login()
-        # Mark this test to save storage state for reuse
-        setattr(request.node, "save_storage", True)
+    with allure.step("Open Dashboard (authenticated session)"):
+        page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
+
+    # with allure.step("Login into OrangeHRM as Admin"):
+    #     login_page = LoginPage(page)
+    #     login_page.navigate()
+    #     login_page.enter_username()
+    #     login_page.enter_password()
+    #     login_page.click_login()
+    #     # Mark this test to save storage state for reuse
+    #     setattr(request.node, "save_storage", True)
 
     with allure.step("Navigate to Admin -> Job -> Employment Status"):
         admin_page = AdminPage(page)
