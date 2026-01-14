@@ -3,7 +3,11 @@ from playwright.sync_api import sync_playwright
 from datetime import datetime
 import os
 
-STORAGE_FILE = "storage_state.json"
+# Absolute path to repo root
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STORAGE_FILE = os.path.join(PROJECT_ROOT, "storage_state.json")
+
+# STORAGE_FILE = "storage_state.json"
 
 
 @pytest.fixture(scope="session", params=["chromium"])
@@ -54,6 +58,7 @@ def context(browser, request):
 @pytest.fixture(scope="function")
 def page(context):
     page = context.new_page()
+    page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
     yield page
 
 
