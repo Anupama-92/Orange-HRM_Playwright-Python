@@ -1,6 +1,6 @@
 [
   {
-    "employee_name": "Automation Test User2",
+    "employee_name": "Automation MiddleName LastName",
     "username": "TestUser45",
     "password": "Admin123",
     "confirm_password": "Admin123",
@@ -8,7 +8,7 @@
     "status": "Enabled"
   },
   {
-  "employee_name": "Automation Test User3",
+  "employee_name": "Automation MiddleName LastName",
   "username": "TestUser45",
   "password": "Admin123",
   "confirm_password": "Admin123",
