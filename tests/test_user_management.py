@@ -20,12 +20,7 @@ def load_test_data():
 @allure.story("Add User")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_user_management(page, user):
-    # with allure.step("Login to the application"):
-    #     login_page = LoginPage(page)
-    #     login_page.navigate()
-    #     login_page.enter_username()
-    #     login_page.enter_password()
-    #     login_page.click_login()
+
     browser_name = page.context.browser.browser_type.name
     allure.dynamic.label("browser", browser_name)
     allure.dynamic.parameter("Browser", browser_name)

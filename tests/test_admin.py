@@ -17,6 +17,10 @@ from config.config import Configs
 def test_employment_status(page, request):
     with allure.step("Add new employment status via API"):
         new_status = EmploymentStatusAPI.add_employment_status()
+    browser_name = page.context.browser.browser_type.name
+    allure.dynamic.label("browser", browser_name)
+    allure.dynamic.parameter("Browser", browser_name)
+    allure.dynamic.title(f"User Management - {browser_name}")
 
     with allure.step("Open Dashboard (authenticated session)"):
         page.goto(Configs.BASE_URL)

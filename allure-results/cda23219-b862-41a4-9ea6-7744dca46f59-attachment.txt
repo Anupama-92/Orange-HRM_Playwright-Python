@@ -1,0 +1,1 @@
+['Freelance', 'Full-Time Contract', 'Full-Time Permanent', 'Full-Time Probation', 'Part-Time Contract', 'Part-Time Internship', 'TestAuto85', 'TestAuto90', 'TestAuto91', 'TestAuto92', 'TestAuto93', 'TestAuto94', 'TestAuto95']

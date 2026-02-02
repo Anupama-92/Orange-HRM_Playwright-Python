@@ -9,6 +9,12 @@ STORAGE_FILE = os.path.join(PROJECT_ROOT, "storage_state.json")
 
 # STORAGE_FILE = "storage_state.json"
 
+def pytest_sessionstart(session):
+    os.makedirs("allure-results", exist_ok=True)
+
+    with open("allure-results/environment.properties", "w") as f:
+        f.write("Framework=Playwright-Python\n")
+        f.write("OS=Windows\n")
 
 @pytest.fixture(scope="session", params=["chromium"])
 def browser(request):
@@ -16,6 +22,8 @@ def browser(request):
     browser_name = request.param
     browser_type = getattr(playwright, browser_name)   # dynamically pick browser type
     browser = browser_type.launch(headless=False, slow_mo=500)
+    with open("allure-results/environment.properties", "a") as f:
+        f.write(f"Browser={browser_name}\n")
     yield browser
     browser.close()
     playwright.stop()
@@ -69,3 +77,6 @@ def pytest_runtest_makereport(item, call):
     outcome = yield
     rep = outcome.get_result()
     setattr(item, "rep_" + rep.when, rep)
+
+
+
