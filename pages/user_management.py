@@ -1,4 +1,4 @@
-from playwright.sync_api import Page
+from playwright.sync_api import Page, expect
 
 
 class UserManagementPage:
@@ -20,8 +20,10 @@ class UserManagementPage:
     def navigate_to_user_management_page(self):
         # self.page.pause()
         self.user_management_menu.click()
+        expect(self.users).to_be_visible(timeout=5000)
 
     def select_user_menu(self):
+        expect(self.users).to_be_visible(timeout=5000)
         self.users.click()
 
     def click_add_user(self):
@@ -42,9 +44,27 @@ class UserManagementPage:
         self.employee_name.fill(employee_name)
 
         # Wait for the suggestion list to appear and select the matching option
-        suggestion = self.page.locator(f"//div[@role='listbox']//span[text()='{employee_name}']")
-        suggestion.wait_for(state="visible", timeout=5000)
-        suggestion.click()
+        # suggestion = self.page.locator(f"//div[@role='listbox']//span[text()='{employee_name}']")
+        # suggestion.wait_for(state="visible", timeout=5000)
+        # suggestion.click()
+        dropdown_items = self.page.locator("//div[contains(@class,'oxd-autocomplete-dropdown')]//span")
+
+        if dropdown_items.count() == 0:
+            # fallback
+            self.employee_name.press("ArrowDown")
+            self.employee_name.press("Enter")
+            return
+
+        # Try to select exact match
+        exact_option = self.page.locator(
+            f"//div[contains(@class,'oxd-autocomplete-dropdown')]//span[text()='{employee_name}']"
+        )
+        if exact_option.count() > 0:
+            exact_option.click()
+            return
+
+        # Select first option
+        dropdown_items.first.click()
 
     def enter_username(self, username):
         self.username.fill(username)

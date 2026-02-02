@@ -1,18 +1,10 @@
 [
   {
-    "employee_name": "Ranga  Akunuri",
-    "username": "TestUser45",
+    "employee_name": "Anupama K",
+    "username": "TestUser46",
     "password": "Admin123",
     "confirm_password": "Admin123",
     "role": "Admin",
     "status": "Enabled"
-  },
-  {
-  "employee_name": "Ranga  Akunuri",
-  "username": "TestUser45",
-  "password": "Admin123",
-  "confirm_password": "Admin123",
-  "role": "Admin",
-  "status": "Enabled"
   }
 ]

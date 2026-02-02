@@ -6,7 +6,7 @@ from config.config import Configs
 from pages.admin_page import AdminPage
 from pages.login_page import LoginPage
 from utils.employment_status_api_utils import EmploymentStatusAPI
-
+from config.config import Configs
 
 @allure.title("Validate Employment Status from API and UI")
 @allure.feature("Employment Status")
@@ -19,7 +19,7 @@ def test_employment_status(page, request):
         new_status = EmploymentStatusAPI.add_employment_status()
 
     with allure.step("Open Dashboard (authenticated session)"):
-        page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
+        page.goto(Configs.BASE_URL)
 
     # with allure.step("Login into OrangeHRM as Admin"):
     #     login_page = LoginPage(page)

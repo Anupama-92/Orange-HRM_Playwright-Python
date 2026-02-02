@@ -5,6 +5,7 @@ from pages.admin_page import AdminPage
 from pages.login_page import LoginPage
 from pages.user_management import UserManagementPage
 from utils.logger import get_logger
+from config.config import Configs
 
 logger = get_logger(__name__)
 
@@ -25,9 +26,13 @@ def test_user_management(page, user):
     #     login_page.enter_username()
     #     login_page.enter_password()
     #     login_page.click_login()
-    #
+    browser_name = page.context.browser.browser_type.name
+    allure.dynamic.label("browser", browser_name)
+    allure.dynamic.parameter("Browser", browser_name)
+    allure.dynamic.title(f"User Management - {browser_name}")
     with allure.step("Open dashboard using restored session"):
-        page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
+        page.goto(Configs.BASE_URL)
+        page.wait_for_load_state("networkidle")
         admin_page = AdminPage(page)
         admin_page.navigate_to_admin_page()
         logger.info("Navigated to Admin Page")
@@ -56,3 +61,6 @@ def test_user_management(page, user):
         name="User Management Screen",
         attachment_type=allure.attachment_type.PNG
     )
+
+    # Custom return message printed by pytest
+    return f"User '{user['username']}' added successfully"
