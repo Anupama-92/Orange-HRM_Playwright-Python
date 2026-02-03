@@ -1,0 +1,3 @@
+[32mINFO    [0m tests.test_user_management:test_user_management.py:33 Navigated to Admin Page
+[32mINFO    [0m tests.test_user_management:test_user_management.py:40 Adding new user: TestUser47
+[32mINFO    [0m tests.test_user_management:test_user_management.py:51 User saved successfully

@@ -1,0 +1,6 @@
+2026-02-03 04:57:01 - tests.test_user_management - INFO - Navigated to Admin Page
+2026-02-03 04:57:04 - tests.test_user_management - INFO - Adding new user: TestUser47
+2026-02-03 04:57:10 - tests.test_user_management - INFO - User saved successfully
+2026-02-03 04:59:33 - tests.test_user_management - INFO - Navigated to Admin Page
+2026-02-03 04:59:42 - tests.test_user_management - INFO - Adding new user: TestUser47
+2026-02-03 04:59:50 - tests.test_user_management - INFO - User saved successfully
