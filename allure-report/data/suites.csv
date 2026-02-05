@@ -1,3 +1,3 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"This test validates that employment statuses added via API are reflected correctly in the Admin UI.","23782","User Management - chromium","tests","Tue Feb 03 10:28:47 IST 2026","passed","Tue Feb 03 10:29:11 IST 2026","","test_admin","",""
 "","32703","User Management - chromium","tests","Tue Feb 03 10:29:18 IST 2026","passed","Tue Feb 03 10:29:50 IST 2026","","test_user_management","",""
+"This test validates that employment statuses added via API are reflected correctly in the Admin UI.","27223","User Management - chromium","tests","Tue Feb 03 16:02:50 IST 2026","passed","Tue Feb 03 16:03:17 IST 2026","","test_admin","",""
